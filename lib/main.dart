@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hanballmobile/pages/about.dart';
 import 'package:hanballmobile/pages/competitions.dart';
+import 'package:hanballmobile/pages/privacy.dart';
 
 void main() {
   // Définir la couleur de la barre de navigation système
@@ -40,34 +42,34 @@ class _MyHomePageState extends State<MyHomePage> {
     const CompetionScreen(),
     const CompetionScreen(),
     const CompetionScreen(),
-    const CompetionScreen(),
-    const CompetionScreen()
+    const PrivacyScreen(),
+    const AboutScreen()
   ];
   final List<AppBar> _appBars = [
     AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Text("Compétitions",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Text("Matchs",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Text("Recherche",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Text("Politique de confidentialité",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Text("A propos",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
     ),
   ];
   @override
