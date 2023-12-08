@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:hanballmobile/models/about_model.dart';
+import 'package:hanballmobile/models/competition_model.dart';
 import 'package:hanballmobile/models/privacy_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,6 +24,16 @@ class ApiService {
       return Privacy.fromJson(data);
     } else {
       throw Exception('Échec de la récupération des données de l\'API politique de confidentialité');
+    }
+  }
+
+    Future<List<Competition>> fetchCompetitions() async {
+    final response = await http.get(Uri.parse('$baseUrl/competition'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((json) => Competition.fromJson(json)).toList();
+    } else {
+      throw Exception('Échec de la récupération des données de l\'API competition');
     }
   }
 }
