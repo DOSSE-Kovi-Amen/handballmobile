@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hanballmobile/pages/Search.dart';
 import 'package:hanballmobile/pages/about.dart';
 import 'package:hanballmobile/pages/competitions.dart';
+import 'package:hanballmobile/pages/match.dart';
 import 'package:hanballmobile/pages/privacy.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+    await initializeDateFormatting('fr_FR', null);
+
   // Définir la couleur de la barre de navigation système
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Color.fromRGBO(27, 106, 173, 1),
@@ -40,36 +45,77 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final List<Widget> _pages = [
     const CompetionScreen(),
-    const CompetionScreen(),
-    const CompetionScreen(),
+    MatchScreen(),
+    const SearchScreen(),
     const PrivacyScreen(),
     const AboutScreen()
   ];
   final List<AppBar> _appBars = [
     AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Text("Compétitions",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+      title: const Row(
+            children: [
+              Icon(Icons.emoji_events, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('Compétitions',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Text("Matchs",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
+      title: const Row(
+            children: [
+              Icon(Icons.sports_handball, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('Matchs',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Text("Recherche",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
+      title: const Row(
+            children: [
+              Icon(Icons.search, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('Recherches',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Text("Politique de confidentialité",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
+      title: const Row(
+            children: [
+              Icon(Icons.description, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('Politiques',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
     ),
         AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Text("A propos",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize:20)),
+      title: const Row(
+            children: [
+              Icon(Icons.info, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('A propos',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
+    ),
+        AppBar(
+      backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
+      title: const Row(
+            children: [
+              Icon(Icons.emoji_events, color: Colors.white,), // Icône à gauche du titre
+              SizedBox(width: 8), // Espacement entre l'icône et le titre
+              Text('Compétitions',style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize:20)),
+            ],
+          ),
+
     ),
   ];
   @override
@@ -91,7 +137,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Compétitions',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.sports_handball),
             label: 'Matchs',
           ),
           BottomNavigationBarItem(
@@ -99,11 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Recherche',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.description),
             label: 'Politiques',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.question_mark_rounded),
+            icon: Icon(Icons.info),
             label: 'A propos',
           ),
         ],

@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:hanballmobile/models/about_model.dart';
 import 'package:hanballmobile/models/competition_model.dart';
+import 'package:hanballmobile/models/match_model.dart';
 import 'package:hanballmobile/models/privacy_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.1.67:8000/api'; // Mettez votre adresse IP et port ici
+  static const String baseUrl = 'http://192.168.1.65:8000'; // Mettez votre adresse IP et port ici
 
   Future<About> fetchAbout() async {
-    final response = await http.get(Uri.parse('$baseUrl/about'));
+    final response = await http.get(Uri.parse('$baseUrl/api/about'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return About.fromJson(data);
@@ -18,7 +19,7 @@ class ApiService {
   }
 
     Future<Privacy> fetchPrivacy() async {
-    final response = await http.get(Uri.parse('$baseUrl/privacy'));
+    final response = await http.get(Uri.parse('$baseUrl/api/privacy'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       return Privacy.fromJson(data);
@@ -28,12 +29,45 @@ class ApiService {
   }
 
     Future<List<Competition>> fetchCompetitions() async {
-    final response = await http.get(Uri.parse('$baseUrl/competition'));
+    final response = await http.get(Uri.parse('$baseUrl/api/competitions'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       return data.map((json) => Competition.fromJson(json)).toList();
     } else {
       throw Exception('Échec de la récupération des données de l\'API competition');
+    }
+  }
+
+    Future<List<Game>> fetchCurrentMatches() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/current-matchs'));
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = jsonDecode(response.body);
+      print(jsonData);
+      return jsonData.map((json) => Game.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load current matches');
+    }
+  }
+
+  Future<List<Game>> fetchComingMatches() async {
+    final response = await http.get(Uri.parse('$baseUrl/api/coming-matchs'));
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonData = jsonDecode(response.body);
+      return jsonData.map((json) => Game.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load coming matches');
+    }
+  }
+
+    Future<Map<String, dynamic>> fetchMatchDetails(int matchId) async {
+    final response = await http.get(Uri.parse('$baseUrl/api/onematch/$matchId'));
+
+    if (response.statusCode == 200) {
+      // La requête a réussi, analysez le JSON et retournez les données
+      return json.decode(response.body);
+    } else {
+      // La requête a échoué, lancez une exception avec le message d'erreur
+      throw Exception('Erreur lors de la récupération des détails du match');
     }
   }
 }
