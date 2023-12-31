@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:hanballmobile/services/api_service.dart';
+import 'package:cahb/services/api_service.dart';
 import 'package:http/http.dart' as http;
 
 class FirebaseMessagingService {
@@ -21,7 +21,9 @@ class FirebaseMessagingService {
     });
 
     // Configurer la réception des messages lorsqu'on clique sur la notification en avant-plan
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) {
       if (message != null) {
         print("Message data: ${message.data}");
         print("Notification title: ${message.notification?.title}");
@@ -34,13 +36,14 @@ class FirebaseMessagingService {
     sendTokenToEndpoint(token);
   }
 
-  void sendTokenToEndpoint(String? token) async{
+  void sendTokenToEndpoint(String? token) {
     // Remplacez cette partie par votre logique d'envoi HTTP vers votre endpoint
     // Utilisez une bibliothèque comme http.dart pour effectuer une requête HTTP
     // vers votre endpoint 'device/post' avec le token comme paramètre.
 
     // Par exemple avec http.dart :
-  await  http.post(Uri.parse('${ApiService.baseUrl}/device/post'), body: {'fcm_registration_token': token});
+    final res = http.post(Uri.parse('${ApiService.baseUrl}/api/device/post'),
+        body: {'fcm_registration_token': token}).then((value) =>print(value.statusCode));
     print("FCM Token: $token");
   }
 }

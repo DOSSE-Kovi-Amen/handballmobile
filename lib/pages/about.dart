@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:hanballmobile/models/about_model.dart';
-import 'package:hanballmobile/services/api_service.dart';
+import 'package:cahb/models/about_model.dart';
+import 'package:cahb/services/api_service.dart';
 
 
 class AboutScreen extends StatefulWidget {

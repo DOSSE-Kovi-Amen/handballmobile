@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hanballmobile/models/match_model.dart';
-import 'package:hanballmobile/pages/match_details.dart';
-import 'package:hanballmobile/services/api_service.dart';
-import 'package:hanballmobile/utils/myfunctions.dart';
+import 'package:cahb/models/match_model.dart';
+import 'package:cahb/pages/match_details.dart';
+import 'package:cahb/services/api_service.dart';
+import 'package:cahb/utils/myfunctions.dart';
 
 class MatchListSection extends StatelessWidget {
   final List<Game> matches; // La liste des matchs à afficher

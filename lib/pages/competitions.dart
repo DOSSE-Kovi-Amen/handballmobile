@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:hanballmobile/models/competition_model.dart';
-import 'package:hanballmobile/pages/competition_details.dart';
-import 'package:hanballmobile/services/api_service.dart';
+import 'package:cahb/models/competition_model.dart';
+import 'package:cahb/pages/competition_details.dart';
+import 'package:cahb/services/api_service.dart';
 
 import '../utils/myfunctions.dart';
 

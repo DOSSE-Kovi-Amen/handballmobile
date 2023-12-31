@@ -1,6 +1,6 @@
-import 'package:hanballmobile/models/competition_model.dart';
-import 'package:hanballmobile/models/group_model.dart';
-import 'package:hanballmobile/models/team_model.dart';
+import 'package:cahb/models/competition_model.dart';
+import 'package:cahb/models/group_model.dart';
+import 'package:cahb/models/team_model.dart';
 
 class Game {
   final int id;

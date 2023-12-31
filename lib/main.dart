@@ -1,17 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hanballmobile/firebase_options.dart';
-import 'package:hanballmobile/pages/Search.dart';
-import 'package:hanballmobile/pages/about.dart';
-import 'package:hanballmobile/pages/competitions.dart';
-import 'package:hanballmobile/pages/match.dart';
-import 'package:hanballmobile/pages/privacy.dart';
+import 'package:cahb/pages/Search.dart';
+import 'package:cahb/pages/about.dart';
+import 'package:cahb/pages/competitions.dart';
+import 'package:cahb/pages/match.dart';
+import 'package:cahb/pages/privacy.dart';
+import 'package:cahb/services/fcm_service.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseMessagingService()
+      .configureFirebase(); // Utilisez la classe pour configurer Firebase
+
   await initializeDateFormatting('fr_FR', null);
   // Définir la couleur de la barre de navigation système
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -28,9 +33,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Handball',
+      title: 'CAHB',
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Handball TOGO'),
+      home: MyHomePage(title: 'CAHB'),
     );
   }
 }

@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "hanballmobile",
+            "name": "cahb",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "hanballmobile (profile mode)",
+            "name": "cahb (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "hanballmobile (release mode)",
+            "name": "cahb (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

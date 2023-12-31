@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hanballmobile/models/match_model.dart';
-import 'package:hanballmobile/pages/mywidgets/match_list_section.dart';
-import 'package:hanballmobile/services/api_service.dart';
+import 'package:cahb/models/match_model.dart';
+import 'package:cahb/pages/mywidgets/match_list_section.dart';
+import 'package:cahb/services/api_service.dart';
 
 class MatchScreen extends StatefulWidget {
   const MatchScreen({super.key});

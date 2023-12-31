@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:hanballmobile/models/match_model.dart';
-import 'package:hanballmobile/services/api_service.dart';
+// import 'package:cahb/models/match_model.dart';
+import 'package:cahb/services/api_service.dart';
 
 class MatchDetailsPage extends StatelessWidget {
   final int matchId;

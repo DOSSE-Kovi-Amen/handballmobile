@@ -1,8 +1,8 @@
 import 'dart:convert';
-import 'package:hanballmobile/models/about_model.dart';
-import 'package:hanballmobile/models/competition_model.dart';
-import 'package:hanballmobile/models/match_model.dart';
-import 'package:hanballmobile/models/privacy_model.dart';
+import 'package:cahb/models/about_model.dart';
+import 'package:cahb/models/competition_model.dart';
+import 'package:cahb/models/match_model.dart';
+import 'package:cahb/models/privacy_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
