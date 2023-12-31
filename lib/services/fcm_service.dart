@@ -6,6 +6,7 @@ class FirebaseMessagingService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> configureFirebase() async {
+        await _firebaseMessaging.requestPermission();
     // Configurer la réception des messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print("Message data: ${message.data}");

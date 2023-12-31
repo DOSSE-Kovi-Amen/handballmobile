@@ -184,10 +184,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.sports_handball),
             label: 'Matchs',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Recherche',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.search),
+          //   label: 'Recherche',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.description),
             label: 'Politiques',
