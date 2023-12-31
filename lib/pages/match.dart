@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hanballmobile/models/match_model.dart';
 import 'package:hanballmobile/pages/mywidgets/match_list_section.dart';
@@ -13,12 +15,27 @@ class MatchScreen extends StatefulWidget {
 class _MatchScreenState extends State<MatchScreen> {
   late Future<List<Game>> currentGamesData;
   late Future<List<Game>> comingGamesData;
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
     currentGamesData = ApiService().fetchCurrentMatches();
     comingGamesData = ApiService().fetchComingMatches();
+    _timer = Timer.periodic(
+      const Duration(seconds: 5),
+      (Timer t) => setState(() {
+        currentGamesData = ApiService().fetchCurrentMatches();
+        comingGamesData = ApiService().fetchComingMatches();
+      }),
+    );
+  }
+
+  @override
+  void dispose() {
+    // Arrête le timer lorsque le widget est détruit
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -36,16 +53,20 @@ class _MatchScreenState extends State<MatchScreen> {
                   future:
                       currentGamesData, // Remplacez cela par l'appel à votre endpoint approprié
                   builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Erreur : ${snapshot.error}'));
-                    } else {
+                    // if (snapshot.connectionState == ConnectionState.waiting) {
+                    //   return const Center(child: CircularProgressIndicator());
+                    // }
+                     if (snapshot.hasError) {
+                      return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
+                    } 
+                    if (snapshot.hasData) {
                       final matches = snapshot.data!;
                       return MatchListSection(
                         matches: matches,
                         titleSection: 'En cours',
                       );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
                     }
                   },
                 ),
@@ -59,23 +80,25 @@ class _MatchScreenState extends State<MatchScreen> {
                   future:
                       comingGamesData, // Remplacez cela par l'appel à votre endpoint approprié
                   builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Erreur : ${snapshot.error}'));
-                    } else {
+                    // if (snapshot.connectionState == ConnectionState.waiting) {
+                    //   return const Center(child: CircularProgressIndicator());
+                    // } 
+                    if (snapshot.hasError) {
+                      return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
+                    } 
+                    if (snapshot.hasData) {
                       final matches = snapshot.data!;
                       return MatchListSection(
                         matches: matches,
                         titleSection: 'A venir',
                       );
+                    }else{
+                      return const Center(child: CircularProgressIndicator());
                     }
                   },
-                  
                 ),
               ),
             ),
-             
           ],
         ),
       ),

@@ -6,7 +6,7 @@ import 'package:hanballmobile/models/privacy_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://192.168.1.65:8000'; // Mettez votre adresse IP et port ici
+  static const String baseUrl = 'http://192.168.1.67:8000'; // Mettez votre adresse IP et port ici
 
   Future<About> fetchAbout() async {
     final response = await http.get(Uri.parse('$baseUrl/api/about'));

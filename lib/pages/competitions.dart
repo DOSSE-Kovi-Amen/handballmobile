@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hanballmobile/models/competition_model.dart';
@@ -27,12 +28,11 @@ class _CompetionScreenState extends State<CompetionScreen> {
     return FutureBuilder<List<Competition>>(
       future: competitionsData,
       builder: (context, snapshot) {
-                  print(snapshot.data);
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
-          return Center(child: Text('Erreur : ${snapshot.error}'));
+          return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
         } else {
           return Container(
             color: Colors.grey[100], // Couleur du fond du container
@@ -45,13 +45,21 @@ class _CompetionScreenState extends State<CompetionScreen> {
                     Container(
                       color: Colors.white,
                       child: ListTile(
-                        leading: Image.network(
-                            '${ApiService.baseUrl}/storage/${competition.competitionName!.logo}'),
-                        title: Text(competition.competitionName!.name, style: const TextStyle(fontSize: 14)),
+                        leading: CachedNetworkImage(
+                          imageUrl:
+                              '${ApiService.baseUrl}/storage/${competition.competitionName?.logo}',
+                          width: 45,
+                          height: 45,
+                          placeholder: (context, url) =>
+                              const CircularProgressIndicator(), // Affichez un indicateur de chargement pendant le téléchargement de l'image
+                          errorWidget: (context, url, error) => const Icon(Icons
+                              .error), // Affichez un widget d'erreur si le téléchargement de l'image échoue
+                        ),
+                        title: Text(competition.competitionName!.name,
+                            style: const TextStyle(fontSize: 14)),
                         subtitle: Text(
                             'Du ${formatDate(competition.startDate)} au ${formatDate(competition.endDate)}',
-                            style: TextStyle(fontSize: 12)
-                            ),
+                            style: const TextStyle(fontSize: 12)),
                         trailing: Text(
                           competition.status == 'current'
                               ? 'En cours '

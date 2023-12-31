@@ -24,7 +24,7 @@ class CompetitionDetailDialog extends StatelessWidget {
             const SizedBox(height: 16),
             Text('Statut: ${competition.status == 'current' ? 'En cours' : 'A venir'}'),
             // Ajoutez d'autres détails si nécessaire
-            Html(data: competition.description)
+            // Html(data: competition.description)
           ],
         ),
       ),

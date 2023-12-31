@@ -4,41 +4,41 @@ import 'package:hanballmobile/models/team_model.dart';
 
 class Game {
   final int id;
-  final int teamHomeId;
-  final int teamAwayId;
-  final String date;
-  final int goalsHome;
-  final int goalsAway;
-  final int competitionId;
-  final String createdAt;
-  final String updatedAt;
+  final int? teamHomeId;
+  final int? teamAwayId;
+  final String? date;
+  final int? goalsHome;
+  final int? goalsAway;
+  final int? competitionId;
+  final String? createdAt;
+  final String? updatedAt;
   final String? deletedAt;
   final String? time;
-  final int groupId;
-  final String status;
-  final Team teamHome;
-  final Team teamAway;
-  final Group group;
-  final Competition competition;
+  final int? groupId;
+  final String? status;
+  final Team? teamHome;
+  final Team? teamAway;
+  final Group? group;
+  final Competition? competition;
 
   Game({
     required this.id,
-    required this.teamHomeId,
-    required this.teamAwayId,
-    required this.date,
-    required this.goalsHome,
-    required this.goalsAway,
-    required this.competitionId,
-    required this.createdAt,
-    required this.updatedAt,
+     this.teamHomeId,
+     this.teamAwayId,
+     this.date,
+     this.goalsHome,
+     this.goalsAway,
+     this.competitionId,
+     this.createdAt,
+     this.updatedAt,
     this.deletedAt,
     this.time,
-    required this.groupId,
-    required this.status,
-    required this.teamHome,
-    required this.teamAway,
-    required this.group,
-    required this.competition,
+     this.groupId,
+     this.status,
+     this.teamHome,
+     this.teamAway,
+     this.group,
+     this.competition,
   });
 
   factory Game.fromJson(Map<String, dynamic> json) {

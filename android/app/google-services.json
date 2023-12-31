@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "237937694728",
+    "project_id": "cahb-466f6",
+    "storage_bucket": "cahb-466f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:237937694728:android:f653d8653e4fbac15e19bd",
+        "android_client_info": {
+          "package_name": "com.example.cahb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6zyc7CE4bXWVckmtJ13atJ42lCO2I2fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

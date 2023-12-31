@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hanballmobile/models/match_model.dart';
 import 'package:hanballmobile/pages/match_details.dart';
@@ -35,27 +36,32 @@ class MatchListSection extends StatelessWidget {
             final match = matches[index];
             return InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MatchDetailsPage( matchId: null,),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => MatchDetailsPage( matchId: 12,),
+                //   ),
+                // );
               },
               child: ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Logo de l'équipe à domicile
-                    Image.network(
-                      '${ApiService.baseUrl}/storage/${match.teamHome.logo}',
-                      width: 30,
-                      height: 30,
+                    CachedNetworkImage(
+                      imageUrl:
+                          '${ApiService.baseUrl}/storage/${match.teamHome?.logo}',
+                      width: 45,
+                      height: 45,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(), // Affichez un indicateur de chargement pendant le téléchargement de l'image
+                      errorWidget: (context, url, error) => const Icon(Icons
+                          .error), // Affichez un widget d'erreur si le téléchargement de l'image échoue
                     ),
                     // Nom de l'équipe à domicile
                     Flexible(
                       child: Text(
-                        ' ${match.teamHome.name}',
+                        ' ${match.teamHome?.name}',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: fontSize),
                       ),
@@ -65,21 +71,26 @@ class MatchListSection extends StatelessWidget {
                     // Nom de l'équipe à l'extérieur
                     Flexible(
                       child: Text(
-                        ' ${match.teamAway.name}',
+                        ' ${match.teamAway?.name}',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(fontSize: fontSize),
                       ),
                     ),
                     // Logo de l'équipe à l'extérieur
-                    Image.network(
-                      '${ApiService.baseUrl}/storage/${match.teamAway.logo}',
-                      width: 30,
-                      height: 30,
+                    CachedNetworkImage(
+                      imageUrl:
+                          '${ApiService.baseUrl}/storage/${match.teamAway?.logo}',
+                      width: 45,
+                      height: 45,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(), // Affichez un indicateur de chargement pendant le téléchargement de l'image
+                      errorWidget: (context, url, error) => const Icon(Icons
+                          .error), // Affichez un widget d'erreur si le téléchargement de l'image échoue
                     ),
                   ],
                 ),
                 subtitle: Text(
-                  'Date: ${formatDate(match.date)} à  ${match.time}',
+                  'Date: ${formatDate(match.date ?? "")} à  ${match.time} (${match.group?.name}) (${match.competition?.competitionName?.name})',
                 ),
                 // Ajoutez d'autres détails si nécessaire
               ),
