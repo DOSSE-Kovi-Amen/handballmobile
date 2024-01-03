@@ -28,11 +28,12 @@ class _CompetionScreenState extends State<CompetionScreen> {
     return FutureBuilder<List<Competition>>(
       future: competitionsData,
       builder: (context, snapshot) {
-
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
+        
         } else if (snapshot.hasError) {
-          return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
+          print('njh ${snapshot.data}');
+          return const Center(child: Text('Erreur de connexion internet ou aucune compétition!'));
         } else {
           return Container(
             color: Colors.grey[100], // Couleur du fond du container

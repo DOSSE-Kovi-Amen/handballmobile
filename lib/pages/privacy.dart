@@ -27,7 +27,7 @@ Widget build(BuildContext context) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Erreur : ${snapshot.error}'));
+            return const Center(child: Text('Erreur de connexion internet'));
           } else {
             return Padding(
               padding: const EdgeInsets.all(8.0),

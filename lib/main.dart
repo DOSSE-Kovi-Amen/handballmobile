@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> _pages = [
     const CompetionScreen(),
     const MatchScreen(),
-    const SearchScreen(),
+    // const SearchScreen(),
     const PrivacyScreen(),
     const AboutScreen()
   ];
@@ -93,23 +93,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     ),
-    AppBar(
-      backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
-      title: const Row(
-        children: [
-          Icon(
-            Icons.search,
-            color: Colors.white,
-          ), // Icône à gauche du titre
-          SizedBox(width: 8), // Espacement entre l'icône et le titre
-          Text('Recherches',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20)),
-        ],
-      ),
-    ),
+    // AppBar(
+    //   backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
+    //   title: const Row(
+    //     children: [
+    //       Icon(
+    //         Icons.search,
+    //         color: Colors.white,
+    //       ), // Icône à gauche du titre
+    //       SizedBox(width: 8), // Espacement entre l'icône et le titre
+    //       Text('Recherches',
+    //           style: TextStyle(
+    //               color: Colors.white,
+    //               fontWeight: FontWeight.bold,
+    //               fontSize: 20)),
+    //     ],
+    //   ),
+    // ),
     AppBar(
       backgroundColor: const Color.fromRGBO(27, 106, 173, 1),
       title: const Row(

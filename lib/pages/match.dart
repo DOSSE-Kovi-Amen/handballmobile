@@ -15,6 +15,8 @@ class MatchScreen extends StatefulWidget {
 class _MatchScreenState extends State<MatchScreen> {
   late Future<List<Game>> currentGamesData;
   late Future<List<Game>> comingGamesData;
+  late Future<List<Game>> closedGamesData;
+
   late Timer _timer;
 
   @override
@@ -22,11 +24,14 @@ class _MatchScreenState extends State<MatchScreen> {
     super.initState();
     currentGamesData = ApiService().fetchCurrentMatches();
     comingGamesData = ApiService().fetchComingMatches();
+    closedGamesData = ApiService().fetchClosedMatches();
+
     _timer = Timer.periodic(
       const Duration(seconds: 5),
       (Timer t) => setState(() {
         currentGamesData = ApiService().fetchCurrentMatches();
         comingGamesData = ApiService().fetchComingMatches();
+        closedGamesData = ApiService().fetchClosedMatches();
       }),
     );
   }
@@ -56,9 +61,11 @@ class _MatchScreenState extends State<MatchScreen> {
                     // if (snapshot.connectionState == ConnectionState.waiting) {
                     //   return const Center(child: CircularProgressIndicator());
                     // }
-                     if (snapshot.hasError) {
-                      return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
-                    } 
+                    if (snapshot.hasError) {
+                      return const Center(
+                          child: Text(
+                              'Erreur connexion internet ou aucun match!'));
+                    }
                     if (snapshot.hasData) {
                       final matches = snapshot.data!;
                       return MatchListSection(
@@ -82,17 +89,48 @@ class _MatchScreenState extends State<MatchScreen> {
                   builder: (context, snapshot) {
                     // if (snapshot.connectionState == ConnectionState.waiting) {
                     //   return const Center(child: CircularProgressIndicator());
-                    // } 
+                    // }
                     if (snapshot.hasError) {
-                      return const Center(child: Text('Erreur : vérifiez votre connexion internet!'));
-                    } 
+                      return const Center(
+                          child: Text(
+                              'Erreur connexion internet ou aucun match !'));
+                    }
                     if (snapshot.hasData) {
                       final matches = snapshot.data!;
                       return MatchListSection(
                         matches: matches,
                         titleSection: 'A venir',
                       );
-                    }else{
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              ),
+            ),
+            Card(
+              elevation: 4,
+              child: Container(
+                color: Colors.white,
+                child: FutureBuilder<List<Game>>(
+                  future:
+                      closedGamesData, // Remplacez cela par l'appel à votre endpoint approprié
+                  builder: (context, snapshot) {
+                    // if (snapshot.connectionState == ConnectionState.waiting) {
+                    //   return const Center(child: CircularProgressIndicator());
+                    // }
+                    if (snapshot.hasError) {
+                      return const Center(
+                          child: Text(
+                              'Erreur connexion internet ou aucun match !'));
+                    }
+                    if (snapshot.hasData) {
+                      final matches = snapshot.data!;
+                      return MatchListSection(
+                        matches: matches,
+                        titleSection: 'Terminé',
+                      );
+                    } else {
                       return const Center(child: CircularProgressIndicator());
                     }
                   },
