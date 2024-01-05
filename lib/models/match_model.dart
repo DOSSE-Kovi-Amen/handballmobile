@@ -56,10 +56,10 @@ class Game {
       time: json['time'],
       groupId: json['group_id'],
       status: json['status'],
-      teamHome: Team.fromJson(json['team_home'] ?? {}),
-      teamAway: Team.fromJson(json['team_away'] ?? {}),
-      group: Group.fromJson(json['group'] ?? {}),
-      competition: Competition.fromJson(json['competition'] ?? {}),
+      teamHome: json['team_home'] != null ? Team.fromJson(json['team_home']) : null,
+      teamAway: json['team_away'] != null ? Team.fromJson(json['team_away']) : null,
+      group: json['group'] != null ? Group.fromJson(json['group']) : null,
+      competition: json['competition'] != null ? Competition.fromJson(json['competition']) : null,
     );
   }
 }

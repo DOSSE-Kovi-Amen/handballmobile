@@ -31,7 +31,9 @@ class Competition {
       updatedAt: json['updated_at'] ?? "",
       status: json['status'] ?? "",
       competitionNameId: json['competition_name_id'] ?? 0,
-      competitionName: CompetitionName.fromJson(json['competition_name'] ?? {}),
+  competitionName: json['competition_name'] != null
+          ? CompetitionName.fromJson(json['competition_name'])
+          : CompetitionName(id: 0, logo: "", name: "", createdAt: '', updatedAt: ''),
     );
   }
 }

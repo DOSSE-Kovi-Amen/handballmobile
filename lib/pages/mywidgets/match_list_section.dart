@@ -48,7 +48,7 @@ class MatchListSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     // Logo de l'équipe à domicile
-                    CachedNetworkImage(
+                    match.teamHome != null? CachedNetworkImage(
                       imageUrl:
                           '${ApiService.baseUrl}/storage/${match.teamHome?.logo}',
                       width: 45,
@@ -57,7 +57,7 @@ class MatchListSection extends StatelessWidget {
                           const CircularProgressIndicator(), // Affichez un indicateur de chargement pendant le téléchargement de l'image
                       errorWidget: (context, url, error) => const Icon(Icons
                           .error), // Affichez un widget d'erreur si le téléchargement de l'image échoue
-                    ),
+                    ):Container(),
                     // Nom de l'équipe à domicile
                     Flexible(
                       child: Text(
@@ -77,7 +77,7 @@ class MatchListSection extends StatelessWidget {
                       ),
                     ),
                     // Logo de l'équipe à l'extérieur
-                    CachedNetworkImage(
+                    match.teamAway != null?CachedNetworkImage(
                       imageUrl:
                           '${ApiService.baseUrl}/storage/${match.teamAway?.logo}',
                       width: 45,
@@ -86,7 +86,7 @@ class MatchListSection extends StatelessWidget {
                           const CircularProgressIndicator(), // Affichez un indicateur de chargement pendant le téléchargement de l'image
                       errorWidget: (context, url, error) => const Icon(Icons
                           .error), // Affichez un widget d'erreur si le téléchargement de l'image échoue
-                    ),
+                    ):Container(),
                   ],
                 ),
                 subtitle: Text(

@@ -63,6 +63,7 @@ class ApiService {
   }
   Future<List<Game>> fetchClosedMatches() async {
     final response = await http.get(Uri.parse('$baseUrl/api/closed-matchs'));
+   print(response.body);
     if (response.statusCode == 200) {
       final List<dynamic> jsonData = jsonDecode(response.body);
       return jsonData.map((json) => Game.fromJson(json)).toList();
