@@ -32,7 +32,7 @@ class _CompetionScreenState extends State<CompetionScreen> {
           return const Center(child: CircularProgressIndicator());
         
         } else if (snapshot.hasError) {
-          print('njh ${snapshot.data}');
+          print(' ${snapshot.data}');
           return const Center(child: Text('Erreur de connexion internet ou aucune compétition!'));
         } else {
           return Container(
