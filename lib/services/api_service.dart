@@ -6,7 +6,7 @@ import 'package:cahb/models/privacy_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'https://cahb.frikalab-group.com'; // Mettez votre adresse IP et port ici
+  static const String baseUrl = 'https://cahb-handball.com'; // Mettez votre adresse IP et port ici
 
   Future<About> fetchAbout() async {
     final response = await http.get(Uri.parse('$baseUrl/api/about'));

@@ -9,9 +9,9 @@ class FirebaseMessagingService {
         await _firebaseMessaging.requestPermission();
     // Configurer la réception des messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print("Message data: ${message.data}");
-      print("Notification title: ${message.notification?.title}");
-      print("Notification body: ${message.notification?.body}");
+      // print("Message data: ${message.data}");
+      // print("Notification title: ${message.notification?.title}");
+      // print("Notification body: ${message.notification?.body}");
     });
 
     // Configurer la réception des messages lorsqu'on clique sur la notification en arrière-plan
