@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '237937694728',
     projectId: 'cahb-466f6',
     storageBucket: 'cahb-466f6.appspot.com',
-    iosBundleId: 'com.example.cahb',
+    iosBundleId: 'com.handball.cahb',
   );
 }
